@@ -2,6 +2,11 @@
 
 #define TAM_TAB 100
 
+enum {
+    INT,
+    LOG
+};
+
 struct elemTabSimbolos {
     char id[100]; //nome do indentificador
     int end;      //endereço
@@ -35,6 +40,17 @@ void insereSimbolo (struct elemTabSimbolos elem) {
         yyerror(msg);
     }
     tabSimb[posTab++] = elem;
+}
+
+void mostraTabela() {
+    puts("Tabela de Simbolos");
+    puts("------------------");
+    printf("%30s | %s | %s\n", "ID", "END", "TIP");
+    for(int i=0; i<50; i++)
+        printf("-");
+    for(int i=0; i < posTab; i++)
+        printf("\n%30s | %3d | %s", tabSimb[i].id, tabSimb[i].end, tabSimb[i].tip == INT ? "INT" : "LOG");
+    puts("\n------------------");
 }
 
 //pilha semantica
